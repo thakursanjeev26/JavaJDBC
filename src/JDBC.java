@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class JDBC {
     public static void main(String[] args) {
-        System.out.println("Welcome To JDBC");
+        System.out.println("Welcome To JDBC ");
 
         String url="jdbc:mysql://127.0.0.1:3306/dbdemo";
         String user="root";
