@@ -1,6 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class JDBC {
     public static void main(String[] args) {
@@ -13,6 +11,24 @@ public class JDBC {
         try (Connection connection = DriverManager.getConnection(url,user,password)){
             System.out.println(connection);
             System.out.println("Connected to Database");
+
+            Statement statement = connection.createStatement();
+            String query="SELECT * FROM employee_payroll";
+
+            ResultSet resultSet = statement.executeQuery(query);
+
+
+            while (resultSet.next()){
+                int id = resultSet.getInt("Id");
+                String name = resultSet.getString("name");
+                double salary = resultSet.getDouble("salary");
+                java.sql.Date start_date = resultSet.getDate("start_date");
+                System.out.println("ID: "+id);
+                System.out.println("Name: "+name);
+                System.out.println("Salary: "+salary);
+                System.out.println("Date: "+start_date);
+            }
+
         }
         catch (SQLException e){
             System.out.println("Connection Failed"+e.getMessage());
