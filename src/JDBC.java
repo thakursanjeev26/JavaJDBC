@@ -12,23 +12,33 @@ public class JDBC {
             System.out.println(connection);
             System.out.println("Connected to Database");
 
+//            Statement statement = connection.createStatement();
+//            String query="SELECT * FROM employee_payroll";
+//
+//            ResultSet resultSet = statement.executeQuery(query);
+//
+//
+//            while (resultSet.next()){
+//                int id = resultSet.getInt("Id");
+//                String name = resultSet.getString("name");
+//                double salary = resultSet.getDouble("salary");
+//                java.sql.Date start_date = resultSet.getDate("start_date");
+//                System.out.println("ID: "+id);
+//                System.out.println("Name: "+name);
+//                System.out.println("Salary: "+salary);
+//                System.out.println("Date: "+start_date);
+//            }
             Statement statement = connection.createStatement();
-            String query="SELECT * FROM employee_payroll";
+            String query = String.format("INSERT INTO employee_payroll (name, salary, start_date) VALUES ('%s', %f, '%s')","Sanjeev",300000.00,"2020-06-26");
+//
+            int rowsAffected = statement.executeUpdate(query);
 
-            ResultSet resultSet = statement.executeQuery(query);
-
-
-            while (resultSet.next()){
-                int id = resultSet.getInt("Id");
-                String name = resultSet.getString("name");
-                double salary = resultSet.getDouble("salary");
-                java.sql.Date start_date = resultSet.getDate("start_date");
-                System.out.println("ID: "+id);
-                System.out.println("Name: "+name);
-                System.out.println("Salary: "+salary);
-                System.out.println("Date: "+start_date);
+            if(rowsAffected>0){
+                System.out.println("Data Inserted Successfully");
             }
-
+            else {
+                System.out.println("Data not Inserted");
+            }
         }
         catch (SQLException e){
             System.out.println("Connection Failed"+e.getMessage());
